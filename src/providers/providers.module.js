@@ -1,11 +1,6 @@
 (function () {
-  'use script'
+  'use strict';
 
-  angular./**
-  * mg.mimetype.providers Module
-  *
-  * Description
-  */
   angular
     .module('mg.mimetype.providers', []);
     

@@ -1,10 +1,9 @@
 (function () {
-  'use strict'
+  'use strict';
 
   angular
     .module('mg.mimetype.constants')
     .constant('fileType',
-
     {
       // .PNG....
       "iVBORw0KGgo": {

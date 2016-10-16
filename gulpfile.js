@@ -1,109 +1,157 @@
-// Generated on 2016-10-16 using generator-angular 0.15.1
-'use strict';
 
-var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
-var openURL = require('open');
-var lazypipe = require('lazypipe');
-var rimraf = require('rimraf');
-var wiredep = require('wiredep').stream;
-var runSequence = require('run-sequence');
+var args = require('yargs').argv,
+    path = require('path'),
+    gulp = require('gulp'),
+    $ = require('gulp-load-plugins')(),
+    gulpsync = $.sync(gulp),
+    PluginError = $.util.PluginError,
+    del = require('del');
+
+// production mode (see build task)
+var isProduction = false;
+// styles sourcemaps
+var useSourceMaps = false;
+
+// ignore everything that begins with underscore
+var hidden_files = '**/_*.*';
+var ignored_files = '!' + hidden_files;
+
+// MAIN PATHS
+var paths = {
+    app: 'app/',
+    scripts: 'src/'
+}
 
 var app = {
-  name: require('./bower.json').appPath || 'app',
+  name: require('./bower.json').name || require('./package.json').name || 'app',
   dist: 'dist'
+}
+
+// SOURCES CONFIG
+var source = {
+    scripts: [paths.scripts + 'core.module.js',
+        paths.scripts + '**/*.module.js',
+        paths.scripts + '**/*.js'
+    ]
 };
 
-var paths = {
-  scripts: [app.name + '/scripts/**/*.js']
+// BUILD TARGET CONFIG
+var build = {
+    scripts: paths.dist
 };
 
-////////////////////////
-// Reusable pipelines //
-////////////////////////
+// PLUGINS OPTIONS
 
-var lintScripts = lazypipe()
-  .pipe($.jshint, '.jshintrc')
-  .pipe($.jshint.reporter, 'jshint-stylish');
+var prettifyOpts = {
+    indent_char: ' ',
+    indent_size: 3,
+    unformatted: ['a', 'sub', 'sup', 'b', 'i', 'u', 'pre', 'code']
+};
 
-///////////
-// Tasks //
-///////////
+var vendorUglifyOpts = {
+};
 
-gulp.task('styles', function () {
-  return gulp.src(paths.styles)
-    .pipe(styles());
+//---------------
+// TASKS
+//---------------
+
+// JS APP
+gulp.task('scripts:core', function() {
+    log('Building scripts..');
+    // Minify and copy all JavaScript (except vendor scripts)
+    return gulp.src(source.scripts)
+        .pipe($.jsvalidate())
+        .on('error', handleError)
+        .pipe($.concat(app.name + '.js'))
+        .pipe(gulp.dest(app.dist))
+        .pipe($.rename(app.name + '.min.js'))
+        .pipe($.ngAnnotate())
+        .on('error', handleError)
+        .pipe($.uglify().on('error', handleError))
+        .on('error', handleError)
+        .pipe(gulp.dest(app.dist));
 });
 
-gulp.task('lint:scripts', function () {
-  return gulp.src(paths.scripts)
-    .pipe(lintScripts());
+
+//---------------
+// WATCH
+//---------------
+
+// Rerun the task when a file changes
+gulp.task('watch', function() {
+    log('Watching source files..');
+
+    gulp.watch(source.scripts, ['scripts:core']);
+
 });
 
-gulp.task('clean:tmp', function (cb) {
-  rimraf('./.tmp', cb);
+// lint javascript
+gulp.task('lint', function() {
+    return gulp
+        .src(source.scripts)
+        .pipe($.jshint())
+        .pipe($.jshint.reporter('jshint-stylish', {
+            verbose: true
+        }))
+        .pipe($.jshint.reporter('fail'));
 });
 
-gulp.task('start:client', ['start:server', 'styles'], function () {
-  openURL('http://localhost:9000');
+// Remove all files from the build paths
+gulp.task('clean', function(done) {
+    var delconfig = [].concat(
+        app.dist
+    );
+
+    log('Cleaning: ' + $.util.colors.blue(delconfig.join(', ')));
+    // force: clean files outside current directory
+    del(delconfig, {
+        force: true
+    }, done);
 });
 
-gulp.task('start:server', function() {
-  $.connect.server({
-    root: [app.name, '.tmp'],
-    livereload: true,
-    // Change this to '0.0.0.0' to access the server from outside.
-    port: 9000
-  });
+//---------------
+// MAIN TASKS
+//---------------
+
+// build for production (minify)
+gulp.task('build', gulpsync.sync([
+    'prod',
+    'scripts:core'
+]));
+
+gulp.task('prod', function() {
+    log('Starting production build...');
+    isProduction = true;
 });
 
-gulp.task('watch', function () {
-
-  $.watch(paths.scripts)
-    .pipe($.plumber())
-    .pipe(lintScripts())
-    .pipe($.connect.reload());
-
-  gulp.watch('bower.json', ['bower']);
+// build with sourcemaps (no minify)
+gulp.task('sourcemaps', ['usesources', 'default']);
+gulp.task('usesources', function() {
+    useSourceMaps = true;
 });
 
-gulp.task('serve', function (cb) {
-  runSequence('clean:tmp',
-    ['lint:scripts'],
-    ['start:client'],
-    'watch', cb);
-});
+// default (no minify)
+gulp.task('default', gulpsync.sync([
+    'scripts:core',
+    'watch'
+]));
 
-gulp.task('serve:prod', function() {
-  $.connect.server({
-    root: [app.dist],
-    livereload: true,
-    port: 9000
-  });
-});
 
-///////////
-// Build //
-///////////
+/////////////////////
 
-gulp.task('clean:dist', function (cb) {
-  rimraf('./dist', cb);
-});
+function done() {
+    log('************');
+    log('* All Done * You can start editing your code, BrowserSync will update your browser after any change..');
+    log('************');
+}
 
-gulp.task('client:build', function () {
-  var jsFilter = $.filter('src/**/*.js');
+// Error handler
+function handleError(err) {
+    log(err.toString());
+    this.emit('end');
+}
 
-  return gulp.src("src/**/*.js")
-    .pipe($.useref({searchPath: [app.name, '.tmp']}))
-    .pipe(jsFilter)
-    .pipe($.ngAnnotate())
-    .pipe($.uglify())
-    .pipe(jsFilter.restore())
-    .pipe(gulp.dest(app.dist));
-});
-
-gulp.task('build', ['clean:dist'], function () {
-  runSequence(['client:build']);
-});
-
-gulp.task('default', ['build']);
+// log to console using
+function log(msg) {
+    $.util.log($.util.colors.blue(msg));
+}
