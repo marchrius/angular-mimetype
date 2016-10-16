@@ -17,18 +17,6 @@ var yeoman = {
 var paths = {
   scripts: [yeoman.app + '/scripts/**/*.js'],
   styles: [yeoman.app + '/styles/**/*.css'],
-  test: ['test/spec/**/*.js'],
-  testRequire: [
-    yeoman.app + '/bower_components/angular/angular.js',
-    yeoman.app + '/bower_components/angular-mocks/angular-mocks.js',
-    yeoman.app + '/bower_components/angular-resource/angular-resource.js',
-    yeoman.app + '/bower_components/angular-cookies/angular-cookies.js',
-    yeoman.app + '/bower_components/angular-sanitize/angular-sanitize.js',
-    yeoman.app + '/bower_components/angular-route/angular-route.js',
-    'test/mock/**/*.js',
-    'test/spec/**/*.js'
-  ],
-  karma: 'karma.conf.js',
   views: {
     main: yeoman.app + '/index.html',
     files: [yeoman.app + '/views/**/*.html']
@@ -78,14 +66,6 @@ gulp.task('start:server', function() {
   });
 });
 
-gulp.task('start:server:test', function() {
-  $.connect.server({
-    root: ['test', yeoman.app, '.tmp'],
-    livereload: true,
-    port: 9001
-  });
-});
-
 gulp.task('watch', function () {
   $.watch(paths.styles)
     .pipe($.plumber())
@@ -100,10 +80,6 @@ gulp.task('watch', function () {
     .pipe($.plumber())
     .pipe(lintScripts())
     .pipe($.connect.reload());
-
-  $.watch(paths.test)
-    .pipe($.plumber())
-    .pipe(lintScripts());
 
   gulp.watch('bower.json', ['bower']);
 });
@@ -121,15 +97,6 @@ gulp.task('serve:prod', function() {
     livereload: true,
     port: 9000
   });
-});
-
-gulp.task('test', ['start:server:test'], function () {
-  var testToFiles = paths.testRequire.concat(paths.scripts, paths.test);
-  return gulp.src(testToFiles)
-    .pipe($.karma({
-      configFile: paths.karma,
-      action: 'watch'
-    }));
 });
 
 // inject bower components
@@ -173,15 +140,15 @@ gulp.task('html', function () {
     .pipe(gulp.dest(yeoman.dist + '/views'));
 });
 
-gulp.task('images', function () {
-  return gulp.src(yeoman.app + '/images/**/*')
-    .pipe($.cache($.imagemin({
-        optimizationLevel: 5,
-        progressive: true,
-        interlaced: true
-    })))
-    .pipe(gulp.dest(yeoman.dist + '/images'));
-});
+// gulp.task('images', function () {
+//   return gulp.src(yeoman.app + '/images/**/*')
+//     .pipe($.cache($.imagemin({
+//         optimizationLevel: 5,
+//         progressive: true,
+//         interlaced: true
+//     })))
+//     .pipe(gulp.dest(yeoman.dist + '/images'));
+// });
 
 gulp.task('copy:extras', function () {
   return gulp.src(yeoman.app + '/*/.*', { dot: true })
