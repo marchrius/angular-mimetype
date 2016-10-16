@@ -62,12 +62,14 @@ gulp.task('scripts:core', function() {
     return gulp.src(source.scripts)
         .pipe($.jsvalidate())
         .on('error', handleError)
+        .pipe($.if(useSourceMaps, $.sourcemaps.init()))
         .pipe($.concat(app.name + '.js'))
         .pipe(gulp.dest(app.dist))
         .pipe($.rename(app.name + '.min.js'))
         .pipe($.ngAnnotate())
         .on('error', handleError)
         .pipe($.uglify().on('error', handleError))
+        .pipe($.if(useSourceMaps, $.sourcemaps.write('./')))
         .on('error', handleError)
         .pipe(gulp.dest(app.dist));
 });
@@ -132,8 +134,7 @@ gulp.task('usesources', function() {
 
 // default (no minify)
 gulp.task('default', gulpsync.sync([
-    'scripts:core',
-    'watch'
+    'scripts:core'
 ]));
 
 
