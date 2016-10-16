@@ -23,7 +23,7 @@ var paths = {
 }
 
 var app = {
-  name: require('./bower.json').name || require('./package.json').name || 'app',
+  name: require('./package.json').name || 'app',
   dist: 'dist'
 }
 
