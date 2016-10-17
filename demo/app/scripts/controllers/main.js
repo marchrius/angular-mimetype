@@ -7,11 +7,7 @@
  * # MainCtrl
  * Controller of the demoApp
  */
-angular.module('demoApp')
+angular.module('angularMimetypeDemoApp')
   .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+
   });

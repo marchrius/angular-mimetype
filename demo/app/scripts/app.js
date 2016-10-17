@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name demoApp
+ * @name angularMimetypeDemoApp
  * @description
- * # demoApp
+ * # angularMimetypeDemoApp
  *
  * Main module of the application.
  */
 angular
-  .module('demoApp', [
+  .module('angularMimetypeDemoApp', [
     'ngAnimate',
     'ngAria',
     'ngCookies',

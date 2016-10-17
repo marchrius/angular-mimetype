@@ -7,11 +7,11 @@
  * # AboutCtrl
  * Controller of the demoApp
  */
-angular.module('demoApp')
+angular.module('angularMimetypeDemoApp')
   .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    var self = this;
+
+    self.author = "Matteo Gaggiano";
+    self.appName = "Angular Mimetype";
+    self.appDescription = "An utility to check the magic numbers of the file.";
   });
