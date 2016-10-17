@@ -3,6 +3,6 @@
 
 
   angular
-    .module('mg.mimetype.filters', []);
+    .module('mg.mimetype.filters', ['mg.mimetype.utils', 'mg.mimetype.constants']);
 
 })();
