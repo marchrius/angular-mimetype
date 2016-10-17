@@ -3,7 +3,7 @@
 
   angular
     .module('mg.mimetype.providers')
-    .provider('$mimeType', fileTypeProvider);
+    .provider('$mimeType', mimeTypeProvider);
 
   function mimeTypeProvider($log) {
     $log.debug("mimeTypeProvider initialized.");
