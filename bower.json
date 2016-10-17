@@ -1,0 +1,21 @@
+{
+  "name": "angular-mimetype",
+  "description": "An angular plugin that check the image header of a given file/string/Blog",
+  "main": "angular-mimetype.js",
+  "authors": [
+    "Marchrius"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "mimetype",
+    "angular"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
