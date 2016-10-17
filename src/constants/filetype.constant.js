@@ -22,14 +22,14 @@
         },
         // ÿØÿà ..JF IF..
         {
-          "regex" : "^FFD8FFE0\d{4}4A4649460001",
+          "regex" : "^FFD8FFE0[0-9a-fA-F]{4}4A4649460001",
           "name": "jfif",
           "type": "image/jpeg",
           "offset":"0"
         },
         // ÿØÿá ..Ex if..
         {
-          "regex" : "^FFD8FFE1\d{4}457869660000",
+          "regex" : "^FFD8FFE1[0-9a-fA-F]{4}457869660000",
           "name": "exif",
           "type": "image/jpeg",
           "offset":"0"
