@@ -31,6 +31,11 @@ var app = {
 var source = {
     scripts: [paths.scripts + 'core.module.js',
         paths.scripts + '**/*.module.js',
+        paths.scripts + '**/*.constant.js',
+        paths.scripts + '**/*.provider.js',
+        paths.scripts + '**/*.factory.js',
+        paths.scripts + '**/*.service.js',
+        paths.scripts + '**/*.filter.js',
         paths.scripts + '**/*.js'
     ]
 };
@@ -117,6 +122,7 @@ gulp.task('clean', function(done) {
 
 // build for production (minify)
 gulp.task('build', gulpsync.sync([
+    'lint',
     'prod',
     'scripts:core'
 ]));
@@ -134,7 +140,7 @@ gulp.task('usesources', function() {
 
 // default (no minify)
 gulp.task('default', gulpsync.sync([
-    'scripts:core'
+    'build'
 ]));
 
 
