@@ -1,5 +1,6 @@
 {
   "name": "angular-mimetype",
+  "version": "0.0.3",
   "description": "An angular plugin that check the image header of a given file/string/Blog",
   "main": "angular-mimetype.js",
   "authors": [
