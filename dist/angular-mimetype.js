@@ -1,37 +1,34 @@
+/**
+ * angular-mimetype - An angular plugin to check the mimetype of a given String/Base64/ArrayBuffer
+ * @version v0.0.3
+ * @author Matteo Gaggiano <m.gaggiano@marchrius.org> (https://marchrius.org/blog)
+ * @link https://marchrius.org/blog
+ * @maintainers
+ * 
+ * @license MIT
+ */
 (function() {
   'use strict';
 
-  angular
-    .module('mg.mimetype', ['mg.mimetype.filters', 'mg.mimetype.directives', 'mg.mimetype.constants']);
+  angular.module('mg.mimetype', ['mg.mimetype.filters', 'mg.mimetype.directives', 'mg.mimetype.constants']);
 
 })();
 (function() {
   'use strict';
 
-  angular
-    .module('mg.mimetype.constants', []);
+  angular.module('mg.mimetype.constants', []);
 
 })();
 (function() {
   'use strict';
 
-  angular
-    .module('mg.mimetype.directives', []);
+  angular.module('mg.mimetype.directives', []);
 
 })();
 (function() {
   'use strict';
 
-  angular
-    .module('mg.mimetype.providers', []);
-
-})();
-(function() {
-  'use strict';
-
-
-  angular
-    .module('mg.mimetype.filters', ['mg.mimetype.utils', 'mg.mimetype.constants']);
+  angular.module('mg.mimetype.filters', ['mg.mimetype.utils', 'mg.mimetype.constants']);
 
 })();
 (function() {
@@ -43,8 +40,13 @@
 (function() {
   'use strict';
 
-  angular
-    .module('mg.mimetype.constants')
+  angular.module('mg.mimetype.providers', []);
+
+})();
+(function() {
+  'use strict';
+
+  angular.module('mg.mimetype.constants')
     .constant('fileType', {
       // .PNG....
       "iVBORw0KGgo": {
@@ -131,17 +133,16 @@
 (function() {
   'use strict';
 
-  angular
-    .module('mg.mimetype.providers')
+  angular.module('mg.mimetype.providers')
     .provider('$mimeType', mimeTypeProvider);
 
   function mimeTypeProvider() {}
+
 })();
 (function() {
   'use strict';
 
-  angular
-    .module('mg.mimetype.utils')
+  angular.module('mg.mimetype.utils')
     .service('$util', UtilService);
 
   function UtilService() {
@@ -182,7 +183,7 @@
   'use strict';
 
   angular.module('mg.mimetype.filters')
-    .filter('mimetype', function($log, $util, fileType) {
+    .filter('mimetype', function($util, fileType) {
 
       var MAX_LEN = 255;
       var EMPTY_STRING = "".toString();
