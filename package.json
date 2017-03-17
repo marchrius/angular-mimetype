@@ -1,11 +1,17 @@
 {
   "name": "angular-mimetype",
-  "private": true,
+  "version": "0.0.3",
+  "description": "An angular plugin to check the mimetype of a given String/Base64/ArrayBuffer",
+  "main": "dist/angular-mimetype.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "devDependencies": {
     "del": "^1.2.0",
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.1",
     "gulp-filter": "^1.0.2",
+    "gulp-header": "^1.8.8",
     "gulp-if": "^1.2.5",
     "gulp-jshint": "^1.11.0",
     "gulp-jsvalidate": "^2.0.0",
@@ -21,9 +27,23 @@
     "through2": "^0.6.3",
     "yargs": "^3.7.2"
   },
-  "engines": {
-    "node": ">=0.10.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marchrius/angular-mimetype.git"
   },
-  "scripts": {
-  }
+  "keywords": [
+    "mimetype",
+    "angularjs",
+    "filter"
+  ],
+  "author": {
+    "name": "Matteo Gaggiano",
+    "email": "m.gaggiano@marchrius.org",
+    "url": "https://marchrius.org/blog"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Marchrius/angular-mimetype/issues"
+  },
+  "homepage": "https://github.com/Marchrius/angular-mimetype#readme"
 }

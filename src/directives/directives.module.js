@@ -1,7 +1,6 @@
 (function() {
   'use strict';
 
-  angular
-    .module('mg.mimetype.directives', []);
-    
+  angular.module('mg.mimetype.directives', []);
+
 })();
