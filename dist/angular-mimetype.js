@@ -1,6 +1,6 @@
 /**
  * angular-mimetype - An angular plugin to check the mimetype of a given String/Base64/ArrayBuffer
- * @version v0.0.3
+ * @version v0.0.4
  * @author Matteo Gaggiano <m.gaggiano@marchrius.org> (https://marchrius.org/blog)
  * @link https://marchrius.org/blog
  * @maintainers
@@ -28,13 +28,13 @@
 (function() {
   'use strict';
 
-  angular.module('mg.mimetype.filters', ['mg.mimetype.factories']);
+  angular.module('mg.mimetype.factories', ['mg.mimetype.utils', 'mg.mimetype.constants']);
 
 })();
 (function() {
   'use strict';
 
-  angular.module('mg.mimetype.factories', ['mg.mimetype.utils', 'mg.mimetype.constants']);
+  angular.module('mg.mimetype.filters', ['mg.mimetype.factories']);
 
 })();
 (function() {
@@ -249,9 +249,9 @@
   angular.module('mg.mimetype.filters')
     .filter('mimetype', mimetypeFilter);
 
-  function mimetypeFilter($mimeType) {
+  function mimetypeFilter(mimeType) {
     return function() {
-      return $mimeType.fromAuto.call($mimeType, arguments);
+      return mimeType.fromAuto.apply(mimeType, arguments);
     };
   }
 })();
