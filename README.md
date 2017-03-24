@@ -1,10 +1,24 @@
 # angular-mimetype
 
+Angular Mimetype is a module for search or match for [MIME](https://en.wikipedia.org/wiki/MIME) type 
 
-## Build & development
+### Requirements
+- node
+- npm
+- gulp
 
-Run `gulp` for building and `grunt sourcemaps` for build with source maps.
+### Build 
+```sh
+gulp 
+```
+for building 
+```sh 
+grunt sourcemaps
+``` 
+for build with source mapsi.
 
-## Testing
+### TODO
+- Testing (Write Unit tests)
 
-Not implemented yet.
+### Contributing
+Create a github account and start contributing by making a pull request [here](https://github.com/Marchrius/angular-mimetype/pulls())
