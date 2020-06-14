@@ -4,6 +4,8 @@ var args = require('yargs').argv,
   pkg = require('./package.json'),
   $ = require('gulp-load-plugins')(),
   gulpsync = $.sync(gulp),
+  colors = require('ansi-colors'),
+  log = require('fancy-log'),
   del = require('del');
 
 // production mode (see build task)
@@ -28,7 +30,9 @@ var hidden_files = '**/_*.*';
 var ignored_files = '!' + hidden_files;
 
 var uglifyOptions = {
-  preserveComments: 'license'
+  output: {
+    comments: 'some'
+  }
 }
 
 // MAIN PATHS
@@ -74,7 +78,7 @@ var prettifyOpts = {
 
 // JS APP
 gulp.task('scripts:core', function() {
-  log('Building scripts..');
+  info('Building scripts..');
   // Minify and copy all JavaScript (except vendor scripts)
   return gulp.src(source.scripts)
     .pipe($.jsvalidate())
@@ -101,9 +105,9 @@ gulp.task('scripts:core', function() {
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
-  log('Watching source files..');
+  info('Watching source files..');
 
-  gulp.watch(source.scripts, ['scripts:core']);
+  gulp.watch(source.scripts, gulp.series('scripts:core'));
 
 });
 
@@ -124,9 +128,9 @@ gulp.task('clean', function(done) {
     app.dist
   );
 
-  log('Cleaning: ' + $.util.colors.blue(delconfig.join(', ')));
+  info('Cleaning: ' + colors.blue(delconfig.join(', ')));
   // force: clean files outside current directory
-  del(delconfig, {
+  return del(delconfig, {
     force: true
   }, done);
 });
@@ -135,45 +139,55 @@ gulp.task('clean', function(done) {
 // MAIN TASKS
 //---------------
 
+gulp.task('prod', function(done) {
+  info('Starting production build...');
+  isProduction = true;
+  done();
+});
+
 // build for production (minify)
-gulp.task('build', gulpsync.sync([
+gulp.task('build', gulp.series(
   'lint',
   'prod',
-  'scripts:core'
-]));
+  'scripts:core', function (done) {
+    done();
+  }));
 
-gulp.task('prod', function() {
-  log('Starting production build...');
-  isProduction = true;
+// default (no minify)
+gulp.task('default', gulp.series('build', function (done) {
+  done();
+}));
+
+gulp.task('usesources', function(done) {
+  useSourceMaps = true;
+  done();
 });
 
 // build with sourcemaps (no minify)
-gulp.task('sourcemaps', ['usesources', 'default']);
-gulp.task('usesources', function() {
-  useSourceMaps = true;
-});
-
-// default (no minify)
-gulp.task('default', gulpsync.sync([
-  'build'
-]));
+gulp.task('sourcemaps', gulp.series('usesources', 'default', function (done) {
+  done();
+}));
 
 
 /////////////////////
 
 function done() {
-  log('************');
-  log('* All Done * You can start editing your code, BrowserSync will update your browser after any change..');
-  log('************');
+  info('************');
+  info('* All Done * You can start editing your code, BrowserSync will update your browser after any change..');
+  info('************');
 }
 
 // Error handler
 function handleError(err) {
-  log(err.toString());
+  error(err.toString());
   this.emit('end');
 }
 
+function error(msg) {
+  log.error(colors.red.bold(msg));
+}
+
 // log to console using
-function log(msg) {
-  $.util.log($.util.colors.bold(msg));
+function info(msg) {
+  log.info(colors.blue.bold(msg));
 }
