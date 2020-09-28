@@ -17,7 +17,7 @@
     "gulp": "^4.0.2",
     "gulp-concat": "^2.4.1",
     "gulp-filter": "^6.0.0",
-    "gulp-header": "^1.8.8",
+    "gulp-header": "^2.0.9",
     "gulp-if": "^3.0.0",
     "gulp-jshint": "^1.11.0",
     "gulp-jsvalidate": "^5.0.0",
