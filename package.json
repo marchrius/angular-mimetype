@@ -23,7 +23,7 @@
     "gulp-jsvalidate": "^5.0.0",
     "gulp-load-plugins": "^2.0.3",
     "gulp-ng-annotate": "^2.1.0",
-    "gulp-rename": "^1.2.0",
+    "gulp-rename": "^2.0.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-sync": "^0.1.4",
     "gulp-uglify": "^3.0.2",
