@@ -13,8 +13,12 @@
     service.escapeRegExp = escapeRegExp;
 
     function hexToBase64(str) {
-      return btoa(String.fromCharCode.apply(null,
-        str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
+      str = str.replace(/\r|\n/g, "");
+      str = str.replace(/([\da-fA-F]{2}) ?/g, "0x$1 ");
+      str = str.replace(/ +$/, "");
+      str = str.split(" ");
+      str = String.fromCharCode.apply(null, str);
+      return btoa(str);
     }
 
     function base64ToHex(str, flag) {
