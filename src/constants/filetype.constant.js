@@ -82,6 +82,25 @@
         "name": "psd",
         "type": "",
         "offset": ""
+      },
+      // .ELF
+      "f0VMRg": {
+        "regex": "^7F454C46",
+        "name": "elf",
+        "type": "application/x-elf",
+        "offset": "0"
+      },
+      "UmFyIRoHAA": {// Rar!... //RAR archive version 1.50 onwards
+        "regex": "^526172211A0700",
+        "name": "rar",
+        "type": "application/x-rar-compressed",
+        "offset": "0"
+      },
+      "UmFyIRoHAQA": {// Rar!.... //RAR archive version 5.0 onwards
+        "regex": "^526172211A070100",
+        "name": "rar",
+        "type": "application/x-rar-compressed",
+        "offset": "0"
       }
     });
 })();
