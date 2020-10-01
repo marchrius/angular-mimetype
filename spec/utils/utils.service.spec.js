@@ -19,7 +19,7 @@ describe('utils service', function() {
 
   describe('hexToBase64', function() {
     it('correctly handles hex to base64 conversion', function(done) {
-      expect($util.hexToBase64("68656c6c6f")).toEqual('aGVsbG8=');
+      expect($util.hexToBase64("68656c6c6f")).toEqual('aGVsbG8='); // hello
       done();
     });
   });
