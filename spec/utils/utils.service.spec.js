@@ -23,4 +23,11 @@ describe('utils service', function() {
       done();
     });
   });
+
+  describe('base64ToHex', function() {
+    it('correctly handles base64 to hex conversion', function(done) {
+      expect($util.base64ToHex("aGVsbG8=")).toEqual('68656c6c6f'); // hello
+      done();
+    });
+  });
 });
