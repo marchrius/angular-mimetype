@@ -30,4 +30,16 @@ describe('utils service', function() {
       done();
     });
   });
+
+  describe('escapeRegExp', function() {
+    it('correctly handles escape reg expressions', function(done) {
+      console.log("escapeRegExp: []");
+      expect($util.escapeRegExp("[]")).toEqual('\\[\\]');
+      console.log("escapeRegExp: {}");
+      expect($util.escapeRegExp("{}")).toEqual('\\{\\}');
+      console.log("escapeRegExp: [.*+?^${}()|[\]\\]");
+      expect($util.escapeRegExp("[.*+?^${}()|[\]\\]")).toEqual('\\[\\.\\*\\+\\?\\^\\$\\{\\}\\(\\)\\|\\[\\\]\\\\\\]');
+      done();
+    });
+  });
 });
