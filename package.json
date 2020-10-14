@@ -5,9 +5,13 @@
   "main": "dist/angular-mimetype.js",
   "scripts": {
     "gulp": "gulp",
+    "prebuild": "node license.js",
     "build": "npm run gulp -- build",
+    "preclean": "node license.js",
     "clean": "npm run gulp -- clean",
+    "prestart": "node license.js",
     "start": "npm run gulp -- watch",
+    "pretest": "node license.js",
     "test": "karma start"
   },
   "devDependencies": {
