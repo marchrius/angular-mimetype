@@ -26,7 +26,7 @@
   angular.module("mg.mimetype.factories")
     .factory("mimeType", MimeTypeFactory);
 
-  function MimeTypeFactory($util, fileType) {
+  function MimeTypeFactory($util, fileType, $q) {
     var MimeTypeFactory = {};
 
     var MAX_LEN = 255;
@@ -46,21 +46,39 @@
 
     MimeTypeFactory.fromAuto = function(unknown) {
       if (unknown instanceof ArrayBuffer) {
-        return fromArrayBuffer(unknown);
+        return MimeTypeFactory.fromArrayBuffer(unknown);
       } else if (unknown instanceof Blob) {
-        return fromBlob(unknown);
+        return MimeTypeFactory.fromBlob(unknown);
       } else if (unknown instanceof String) {
-        return fromString(unknown);
+        return MimeTypeFactory.fromString(unknown);
       } else {
-        return fromString(unknown);
+        return MimeTypeFactory.fromString(unknown);
       }
     };
+
+    function fromBlob(blob) {
+      var promise = $q(function(resolve, reject) {
+        var reader = new FileReader();
+        reader.addEventListener("error", function() {
+          reject(reader.error);
+        });
+        reader.addEventListener("loadend", function() {
+          resolve(reader.result);
+        });
+        reader.readAsDataURL(blob);
+      });
+      return promise;
+    }
+
+    function fromArrayBuffer(arrayBuffer) {
+      var asString = window.btoa(String.fromCharCode.apply(null, new Uint8Array(arrayBuffer)));
+      return fromString(asString);
+    }
 
     function fromString(input) {
       if (angular.isUndefined(input))
         return EMPTY_STRING;
-      var found = null,
-        obj = null,
+      var obj = null,
         part, hex, res;
       for (var prop in fileType) {
         if ($util.hop(fileType, prop) && input.startsWith(prop)) {
