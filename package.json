@@ -6,7 +6,7 @@
   "scripts": {
     "gulp": "gulp",
     "prebuild": "node license.js",
-    "build": "npm run gulp -- build",
+    "build": "npm run gulp -- sourcemaps",
     "preclean": "node license.js",
     "clean": "npm run gulp -- clean",
     "prestart": "node license.js",
