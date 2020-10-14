@@ -21,10 +21,10 @@
 
 
 (function() {
-  'use strict';
+  "use strict";
 
-  angular.module('mg.mimetype.utils')
-    .service('$util', UtilService);
+  angular.module("mg.mimetype.utils")
+    .service("$util", UtilService);
 
   function UtilService() {
     var service = {};
@@ -40,12 +40,12 @@
       str = str.replace(/ +$/, "");
       str = str.split(" ");
       str = String.fromCharCode.apply(null, str);
-      return btoa(str);
+      return window.btoa(str);
     }
 
     function base64ToHex(str, flag) {
       flag = !!flag;
-      for (var i = 0, bin = atob(str.replace(/[ \r\n]+$/, "")), hex = []; i < bin.length; ++i) {
+      for (var i = 0, bin = window.atob(str.replace(/[ \r\n]+$/, "")), hex = []; i < bin.length; ++i) {
         var tmp = bin.charCodeAt(i).toString(16);
         if (tmp.length === 1) tmp = "0" + tmp;
         hex[hex.length] = tmp;
@@ -58,7 +58,7 @@
     }
 
     function escapeRegExp(string) {
-      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+      return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
     }
 
     return service;

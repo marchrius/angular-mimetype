@@ -21,10 +21,11 @@
 
 
 (function(tableStr) {
-  'use strict';
+  "use strict";
+
   var __table = tableStr.split("");
 
-  if (typeof window.atob === 'undefined') {
+  if (typeof window.atob === "undefined") {
     window.atob = function(base64) {
       if (/(=[^=]+|={3,})$/.test(base64)) throw new Error("String contains an invalid character");
       base64 = base64.replace(/=/g, "");
@@ -44,7 +45,7 @@
     };
   }
 
-  if (typeof window.btoa === 'undefined') {
+  if (typeof window.btoa === "undefined") {
     window.btoa = function(bin) {
       for (var i = 0, j = 0, len = bin.length / 3, base64 = []; i < len; ++i) {
         var a = bin.charCodeAt(j++),

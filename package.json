@@ -6,7 +6,7 @@
   "scripts": {
     "gulp": "gulp",
     "prebuild": "node license.js",
-    "build": "npm run gulp -- build",
+    "build": "npm run gulp -- sourcemaps",
     "preclean": "node license.js",
     "clean": "npm run gulp -- clean",
     "prestart": "node license.js",
@@ -43,7 +43,8 @@
     "karma-phantomjs-launcher": "^1.0.4",
     "marked": "^1.1.0",
     "through2": "^4.0.2",
-    "yargs": "^16.0.3"
+    "yargs": "^16.0.3",
+    "yargs-parser": ">=13.1.2"
   },
   "repository": {
     "type": "git",

@@ -20,14 +20,14 @@
  */
 
 
-describe('utils service', function() {
+describe("utils service", function() {
   beforeEach(function() {
-    module('mg.mimetype');
-    module('mg.mimetype.constants');
-    module('mg.mimetype.directives');
-    module('mg.mimetype.factories');
-    module('mg.mimetype.filters');
-    module('mg.mimetype.utils');
+    module("mg.mimetype");
+    module("mg.mimetype.constants");
+    module("mg.mimetype.directives");
+    module("mg.mimetype.factories");
+    module("mg.mimetype.filters");
+    module("mg.mimetype.utils");
   });
 
   var $mimetype;
@@ -54,14 +54,13 @@ describe('utils service', function() {
     inject(function(_$filter_) {
       // The injector unwraps the underscores (_) from around the parameter names when matching
       $filter = _$filter_;
-      $mimetype = $filter('mimetype');
+      $mimetype = $filter("mimetype");
     });
   });
 
-  describe('fromString', function() {
-    it('correctly detect mimetype from strings', function(done) {
+  describe("fromString", function() {
+    it("correctly detect mimetype from strings", function(done) {
       base64Strings.forEach(function (value) {
-        console.info("Checking " + value.base64 + " to be as " + value.expected);
         expect($mimetype(value.base64)).toEqual(value.expected);
       });
       done();

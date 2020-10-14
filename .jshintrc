@@ -1,0 +1,20 @@
+{
+  "esversion": 6,
+  "quotmark": "double",
+  "undef": true,
+  "unused": true,
+  "globals"   : {
+    /* MOCHA */
+    "describe" : false,
+    "beforeEach" : false,
+    "module" : false,
+    "inject" : false,
+    "it" : false,
+    "expect" : false,
+    /* Angular */
+    "angular" : false,
+    "window": false,
+    "Blob": false,
+    "FileReader": false
+  }
+}

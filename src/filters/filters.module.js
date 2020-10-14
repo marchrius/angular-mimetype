@@ -21,8 +21,8 @@
 
 
 (function() {
-  'use strict';
+  "use strict";
 
-  angular.module('mg.mimetype.filters', ['mg.mimetype.factories']);
+  angular.module("mg.mimetype.filters", ["mg.mimetype.factories"]);
 
 })();

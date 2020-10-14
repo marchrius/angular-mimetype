@@ -21,10 +21,10 @@
 
 
 (function() {
-  'use strict';
+  "use strict";
 
-  angular.module('mg.mimetype.constants')
-    .constant('fileType', {
+  angular.module("mg.mimetype.constants")
+    .constant("fileType", {
       // .PNG....
       "iVBORw0KGgo": {
         "regex": "^89504E470D0A1A0A",
