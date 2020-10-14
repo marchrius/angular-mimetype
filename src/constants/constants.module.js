@@ -21,8 +21,8 @@
 
 
 (function() {
-  'use strict';
+  "use strict";
 
-  angular.module('mg.mimetype.constants', []);
+  angular.module("mg.mimetype.constants", []);
 
 })();

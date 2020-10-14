@@ -21,7 +21,7 @@
 
 
 (function() {
-  'use strict';
+  "use strict";
 
   if (!String.prototype.startsWith) {
     String.prototype.startsWith = function(str2) {

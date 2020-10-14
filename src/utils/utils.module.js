@@ -21,8 +21,8 @@
 
 
 (function() {
-  'use strict';
+  "use strict";
 
-  angular.module('mg.mimetype.utils', []);
+  angular.module("mg.mimetype.utils", []);
 
 })();

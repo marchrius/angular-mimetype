@@ -21,10 +21,10 @@
 
 
 (function() {
-  'use strict';
+  "use strict";
 
-  angular.module('mg.mimetype.filters')
-    .filter('mimetype', mimetypeFilter);
+  angular.module("mg.mimetype.filters")
+    .filter("mimetype", mimetypeFilter);
 
   function mimetypeFilter(mimeType) {
     return function() {

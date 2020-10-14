@@ -21,10 +21,10 @@
 
 
 (function() {
-  'use strict';
+  "use strict";
 
-  angular.module('mg.mimetype.factories')
-    .factory('mimeType', MimeTypeFactory);
+  angular.module("mg.mimetype.factories")
+    .factory("mimeType", MimeTypeFactory);
 
   function MimeTypeFactory($util, fileType) {
     var MimeTypeFactory = {};

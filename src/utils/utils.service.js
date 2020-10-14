@@ -21,10 +21,10 @@
 
 
 (function() {
-  'use strict';
+  "use strict";
 
-  angular.module('mg.mimetype.utils')
-    .service('$util', UtilService);
+  angular.module("mg.mimetype.utils")
+    .service("$util", UtilService);
 
   function UtilService() {
     var service = {};
@@ -58,7 +58,7 @@
     }
 
     function escapeRegExp(string) {
-      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+      return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
     }
 
     return service;
