@@ -1,6 +1,6 @@
 /**
  * angular-mimetype - An angular plugin to check the mimetype of a given String/Base64/ArrayBuffer
- * @version v0.0.4
+ * @version v0.0.5
  * @author Matteo Gaggiano <m.gaggiano@marchrius.org> (https://marchrius.org/blog)
  * @link https://marchrius.org/blog
  * @maintainers
