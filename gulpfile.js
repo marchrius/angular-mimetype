@@ -1,9 +1,6 @@
-var args = require('yargs').argv,
-  path = require('path'),
-  gulp = require('gulp'),
+var gulp = require('gulp'),
   pkg = require('./package.json'),
   $ = require('gulp-load-plugins')(),
-  gulpsync = $.sync(gulp),
   colors = require('ansi-colors'),
   log = require('fancy-log'),
   del = require('del');
@@ -24,10 +21,6 @@ var headerTemplate = ['/**',
   ' */',
   ''
 ].join('\n');
-
-// ignore everything that begins with underscore
-var hidden_files = '**/_*.*';
-var ignored_files = '!' + hidden_files;
 
 var uglifyOptions = {
   output: {
@@ -57,19 +50,6 @@ var source = {
     paths.scripts + '**/*.filter.js',
     paths.scripts + '**/*.js'
   ]
-};
-
-// BUILD TARGET CONFIG
-var build = {
-  scripts: paths.dist
-};
-
-// PLUGINS OPTIONS
-
-var prettifyOpts = {
-  indent_char: ' ',
-  indent_size: 3,
-  unformatted: ['a', 'sub', 'sup', 'b', 'i', 'u', 'pre', 'code']
 };
 
 //---------------
@@ -109,6 +89,7 @@ gulp.task('watch', function() {
 
   gulp.watch(source.scripts, gulp.series('scripts:core'));
 
+  startEditingMessage();
 });
 
 // lint javascript
@@ -171,7 +152,7 @@ gulp.task('sourcemaps', gulp.series('usesources', 'default', function (done) {
 
 /////////////////////
 
-function done() {
+function startEditingMessage() {
   info('************');
   info('* All Done * You can start editing your code, BrowserSync will update your browser after any change..');
   info('************');
