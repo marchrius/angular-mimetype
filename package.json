@@ -41,7 +41,7 @@
     "karma-cli": "^2.0.0",
     "karma-jasmine": "^4.0.1",
     "karma-phantomjs-launcher": "^1.0.4",
-    "marked": "^1.2.4",
+    "marked": "^1.2.5",
     "through2": "^4.0.2",
     "yargs": "^16.1.1",
     "yargs-parser": ">=20.2.4"
