@@ -27,7 +27,7 @@
     "gulp-if": "^3.0.0",
     "gulp-jshint": "^2.1.0",
     "gulp-jsvalidate": "^5.0.0",
-    "gulp-load-plugins": "^2.0.5",
+    "gulp-load-plugins": "^2.0.6",
     "gulp-ng-annotate": "^2.1.0",
     "gulp-rename": "^2.0.0",
     "gulp-sourcemaps": "^3.0.0",
