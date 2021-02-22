@@ -44,7 +44,7 @@
     "puppeteer": "^7.1.0",
     "through2": "^4.0.2",
     "yargs": "^16.2.0",
-    "yargs-parser": ">=20.2.5"
+    "yargs-parser": ">=20.2.6"
   },
   "repository": {
     "type": "git",
