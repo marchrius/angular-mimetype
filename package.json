@@ -43,7 +43,7 @@
     "marked": "^2.0.3",
     "puppeteer": "^9.0.0",
     "through2": "^4.0.2",
-    "yargs": "^16.2.0",
+    "yargs": "^17.0.0",
     "yargs-parser": ">=20.2.7"
   },
   "repository": {
