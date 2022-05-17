@@ -40,7 +40,7 @@
     "karma-chrome-launcher": "^3.1.0",
     "karma-cli": "^2.0.0",
     "karma-jasmine": "^5.0.1",
-    "marked": "^4.0.9",
+    "marked": "^4.0.16",
     "puppeteer": "^14.1.0",
     "through2": "^4.0.2",
     "yargs": "^17.5.1",
