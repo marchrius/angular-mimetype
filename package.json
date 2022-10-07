@@ -41,7 +41,7 @@
     "karma-cli": "^2.0.0",
     "karma-jasmine": "^5.1.0",
     "marked": "^4.0.17",
-    "puppeteer": "^14.4.0",
+    "puppeteer": "^18.2.1",
     "through2": "^4.0.2",
     "yargs": "^17.5.1",
     "yargs-parser": ">=21.0.1"
