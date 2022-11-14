@@ -34,7 +34,7 @@
     "gulp-sync": "^0.1.4",
     "gulp-uglify": "^3.0.2",
     "jasmine": "^4.2.0",
-    "jshint": "^2.13.5",
+    "jshint": "^2.13.6",
     "jshint-stylish": "^2.0.0",
     "karma": "^6.4.0",
     "karma-chrome-launcher": "^3.1.1",
